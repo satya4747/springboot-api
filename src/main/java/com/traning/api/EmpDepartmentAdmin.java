@@ -1,4 +1,4 @@
-package com.traning.simple;
+package com.traning.api;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Primary;

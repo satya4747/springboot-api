@@ -1,4 +1,4 @@
-package com.traning.simple;
+package com.traning.api;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

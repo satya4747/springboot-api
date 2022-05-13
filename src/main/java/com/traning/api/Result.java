@@ -1,4 +1,4 @@
-package com.traning.simple;
+package com.traning.api;
 
 public class Result {
 	private String math;
