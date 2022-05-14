@@ -1,57 +1,74 @@
 package com.traning.api;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 @Component
+@Lazy
 public class Employee {
+	
+	@Value("${company.name}")
+	private String companyName;
+	
 	private String name;
-
-	@Autowired //Autowiring by type from bean name 'employee' to bean named 'address'
-	private Address address;
-
-	//@Autowired(required = false) // to resolve the conflict
-	@Autowired
-	private EmpDepartment empDepartmentHR;
-
-
-	//Autowiring by type from bean name 'employee' via constructor to bean named 'address'
-	//	Employee(Address address){
-	//		this.address = address;
-	//	}
-
+	
+	//@Autowired //Autowiring by type from bean name 'employee' to bean named 'address'
+	private Address addr;
+	
+	//@Autowired //Autowiring by type from bean name 'employee' via constructor to bean named 'address'
+	Employee(Address addr){
+		this.addr=addr;
+	}
+	
+	@Autowired(required = false) //Autowiring by type from bean name 'employee' to bean named 'departmentAdmin'
+	private Department departmentAdmin1; 
+	
+	public void setDepartment(Department department) {
+		this.departmentAdmin1 = department;
+	}
+	
+	public Department getDepartment() {
+		return departmentAdmin1;
+	}
+	
 	public String getName() {
 		return name;
 	}
-
-	public EmpDepartment getEmpDepartment() {
-		return empDepartmentHR;
-	}
-
-	public void setEmpDepartment(EmpDepartment empDepartment) {
-		empDepartmentHR = empDepartment;
-	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Address getAddress() {
-		return address;
+	public Address getAddr() {
+		return addr;
 	}
-
-	//@Autowired  //Autowiring by type from bean name 'employee' to bean named 'address'
-	public void setAddress(Address address) {
-		this.address = address;
+	
+	//@Autowired // Autowiring by type from bean name 'employee' to bean named 'address'
+	public void setAddr(Address addr) {
+		this.addr = addr;
 	}
-
-//	@PostConstruct
-//	void init() {
-//		System.out.println("created successfully");
-//	}
-//
-//	@PreDestroy
-//	void destructor() {
-//		System.out.println("destroy successfully");
-//	}
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("Ready for use");
+	}
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("Ready for destroy");	
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	
 }

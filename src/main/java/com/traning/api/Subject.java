@@ -1,6 +1,11 @@
 package com.traning.api;
 
-public class Result {
+import javax.inject.Named;
+
+import org.springframework.stereotype.Component;
+
+@Named
+public class Subject {
 	private String math;
 	private String english;
 	private String science;
@@ -22,6 +27,5 @@ public class Result {
 	public void setScience(String science) {
 		this.science = science;
 	}
-
-
+	
 }

@@ -2,11 +2,11 @@ package com.traning.api;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class EmpDepartmentHR implements EmpDepartment {
+@Component()
+public class DepartmentHR implements Department {
 
 	@Override
-	public String getDepartmentName() {
+	public String getName() {
 		return "HR";
 	}
 

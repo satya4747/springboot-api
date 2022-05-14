@@ -1,36 +1,31 @@
 package com.traning.api;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Named
 public class Student {
-
 	private String name;
-	private int age;
-
-	private Result result;
-
+	private Subject subject;
+	
+	@Inject
+	Student(Subject subject){
+		this.subject=subject;
+	}
+	
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public int getAge() {
-		return age;
+	public Subject getSubject() {
+		return subject;
 	}
-
-	public void setAge(int age) {
-		this.age = age;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
-
-	public Result getResult() {
-		return result;
-	}
-
-	public void setResult(Result result) {
-		this.result = result;
-	}
-
-
-
+	
 }
