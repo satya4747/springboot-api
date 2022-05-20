@@ -1,74 +1,69 @@
 package com.traning.api;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Component
-@Lazy
 public class Employee {
 	
-	@Value("${company.name}")
-	private String companyName;
+	@Id
+    @GeneratedValue
+	Integer id;
 	
-	private String name;
+	String name;
 	
-	//@Autowired //Autowiring by type from bean name 'employee' to bean named 'address'
-	private Address addr;
+	String age;
 	
-	//@Autowired //Autowiring by type from bean name 'employee' via constructor to bean named 'address'
-	Employee(Address addr){
-		this.addr=addr;
+	String mobileNumber;
+	
+	Date datetime;
+	
+	public Employee() {}
+	
+	public Employee(Integer id, String name, String age, String mobileNumber, Date datetime) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.mobileNumber = mobileNumber;
+		this.datetime = datetime;
 	}
-	
-	@Autowired(required = false) //Autowiring by type from bean name 'employee' to bean named 'departmentAdmin'
-	private Department departmentAdmin1; 
-	
-	public void setDepartment(Department department) {
-		this.departmentAdmin1 = department;
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", age=" + age + ", mobileNumber=" + mobileNumber
+				+ ", datetime=" + datetime + "]";
 	}
-	
-	public Department getDepartment() {
-		return departmentAdmin1;
+	public Integer getId() {
+		return id;
 	}
-	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
-	
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Address getAddr() {
-		return addr;
+	public String getAge() {
+		return age;
 	}
-	
-	//@Autowired // Autowiring by type from bean name 'employee' to bean named 'address'
-	public void setAddr(Address addr) {
-		this.addr = addr;
+	public void setAge(String age) {
+		this.age = age;
 	}
-	
-	@PostConstruct
-	public void init() {
-		System.out.println("Ready for use");
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
-	
-	@PreDestroy
-	public void destroy() {
-		System.out.println("Ready for destroy");	
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public Date getDatetime() {
+		return datetime;
 	}
-	public String getCompanyName() {
-		return companyName;
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
 	}
 	
 }

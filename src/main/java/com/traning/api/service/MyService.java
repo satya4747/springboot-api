@@ -1,33 +1,34 @@
 package com.traning.api.service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.traning.api.Employee;
 import com.traning.api.dao.MyDao;
 
 @Service
-@Lazy(value = false)
-//@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MyService {
 	
 	@Autowired
 	MyDao dao;
 	
-	public String getEmployeeName() {
-		return dao.getEmployeeName();
+	public List<Employee> findAll(){
+		return dao.findAll();
 	}
-	@PostConstruct
-	private void init() {
-		System.out.println("Bean ready to use");
+	public void save(Employee employee) {
+		dao.save(employee);
 	}
-	@PreDestroy
-	private void destroy() {
-		System.out.println("bean destroyed");
+	public void delete(Integer id) {
+		dao.delete(id);
 	}
+	public Employee findByID(Integer id) {
+		return dao.findByID(id);
+	}
+	public void update(Employee emp) {
+		dao.update(emp);
+	}
+	
+	
 }
